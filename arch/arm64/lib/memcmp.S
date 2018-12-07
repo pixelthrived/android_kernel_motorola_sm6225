@@ -136,3 +136,4 @@ L(byte_loop):
 	ret
 
 ENDPIPROC(memcmp)
+EXPORT_SYMBOL_NOKASAN(memcmp)
