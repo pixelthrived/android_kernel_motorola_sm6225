@@ -2,6 +2,7 @@
 #ifndef _LINUX_SECCOMP_H
 #define _LINUX_SECCOMP_H
 
+#include <linux/atomic.h>
 #include <uapi/linux/seccomp.h>
 
 #define SECCOMP_FILTER_FLAG_MASK	(SECCOMP_FILTER_FLAG_TSYNC	| \
@@ -27,6 +28,7 @@ struct seccomp_filter;
  */
 struct seccomp {
 	int mode;
+       atomic_t filter_count;
 	struct seccomp_filter *filter;
 };
 
