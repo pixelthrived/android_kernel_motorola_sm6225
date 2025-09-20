@@ -46,6 +46,16 @@ bool __list_del_entry_valid(struct list_head *entry)
 	prev = entry->prev;
 	next = entry->next;
 
+    pr_err("DEBUG: list_del entry=%px prev=%px next=%px\n", entry, prev, next);
+    pr_err("DEBUG: prev->next=%px (should be %px)\n", prev->next, entry);
+    pr_err("DEBUG: next->prev=%px (should be %px)\n", next->prev, entry);
+    
+    if (unlikely(next->prev != entry)) {
+        print_hex_dump(KERN_ERR, "CORRUPT prev: ", DUMP_PREFIX_ADDRESS, 16, 1, prev, 64, 1);
+        print_hex_dump(KERN_ERR, "CORRUPT entry: ", DUMP_PREFIX_ADDRESS, 16, 1, entry, 64, 1);
+        print_hex_dump(KERN_ERR, "CORRUPT next: ", DUMP_PREFIX_ADDRESS, 16, 1, next, 64, 1);
+    }
+
 	if (CHECK_DATA_CORRUPTION(next == NULL,
 			"list_del corruption, %px->next is NULL\n", entry) ||
 	    CHECK_DATA_CORRUPTION(prev == NULL,
