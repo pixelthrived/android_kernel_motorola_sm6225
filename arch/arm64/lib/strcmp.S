@@ -173,4 +173,3 @@ L(done):
 	ret
 
 ENDPIPROC(strcmp)
-EXPORT_SYMBOL_NOKASAN(strcmp)
