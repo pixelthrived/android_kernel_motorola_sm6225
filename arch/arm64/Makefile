@@ -52,7 +52,7 @@ KBUILD_CFLAGS	+= -mgeneral-regs-only
 KBUILD_CFLAGS	+= $(lseinstr) $(compat_vdso) $(cc_has_k_constraint)
 
 ifeq ($(CONFIG_ARCH_KHAJE), y)
-ifeq ($(cc-name),clang)
+ifeq ($(CONFIG_CC_IS_CLANG), y)
 KBUILD_CFLAGS   += -mcpu=cortex-a53
 KBUILD_AFLAGS   += -mcpu=cortex-a53
 ifeq ($(CONFIG_LD_IS_LLD), y)
