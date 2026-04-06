@@ -2643,7 +2643,7 @@ static int rt9471_request_dpdm(struct rt9471_chip *chip, bool enable)
 }
 
 #ifdef CONFIG_MMI_QC3P_WT6670_DETECTED
-static bool is_chan_valid(struct rt9471_chip *chip,
+bool is_chan_valid(struct rt9471_chip *chip,
 		enum mmi_qc3p_ext_iio_channels chan)
 {
 	int rc;
@@ -2668,7 +2668,7 @@ static bool is_chan_valid(struct rt9471_chip *chip,
 	return true;
 }
 
-static int mmi_charger_read_iio_chan(struct rt9471_chip *chip,
+int mmi_charger_read_iio_chan(struct rt9471_chip *chip,
 	enum mmi_qc3p_ext_iio_channels chan, int *val)
 {
 	int rc;
@@ -2682,7 +2682,7 @@ static int mmi_charger_read_iio_chan(struct rt9471_chip *chip,
 	return -EINVAL;
 }
 
-static int mmi_charger_write_iio_chan(struct rt9471_chip *chip,
+int mmi_charger_write_iio_chan(struct rt9471_chip *chip,
 	enum mmi_qc3p_ext_iio_channels chan, int val)
 {
 	if (is_chan_valid(chip, chan))
@@ -2705,7 +2705,7 @@ static int mmi_init_iio_psy(struct rt9471_chip *chip,
 	return 0;
 }
 
-static int qc3p_start_detection(struct rt9471_chip *chip)
+int qc3p_start_detection(struct rt9471_chip *chip)
 {
 	int ret = 0;
 	ret = mmi_charger_write_iio_chan(chip, SMB5_QC3P_START_DETECT, true);
@@ -2716,7 +2716,7 @@ static int qc3p_start_detection(struct rt9471_chip *chip)
 	return 0;
 }
 
-static bool qc3p_detection_done(struct rt9471_chip *chip)
+bool qc3p_detection_done(struct rt9471_chip *chip)
 {
 	int ret = 0;
 	int val = 0;
@@ -2737,7 +2737,7 @@ static bool qc3p_detection_done(struct rt9471_chip *chip)
 	return val;
 }
 
-static int qc3p_read_charger_type(struct rt9471_chip *chip)
+int qc3p_read_charger_type(struct rt9471_chip *chip)
 {
 	int ret = 0;
 	int val = 0;
@@ -2750,7 +2750,7 @@ static int qc3p_read_charger_type(struct rt9471_chip *chip)
 	return val;
 }
 
-static bool qc3p_update_policy(struct rt9471_chip *chip)
+bool qc3p_update_policy(struct rt9471_chip *chip)
 {
 	int ret = 0;
 	int val = 0;
@@ -2763,7 +2763,7 @@ static bool qc3p_update_policy(struct rt9471_chip *chip)
 	return val;
 }
 
-static int bc12_start_detection(struct rt9471_chip *chip)
+int bc12_start_detection(struct rt9471_chip *chip)
 {
 	int ret = 0;
 	ret = mmi_charger_write_iio_chan(chip, SMB5_BC12_START_DETECT, true);
@@ -2774,7 +2774,7 @@ static int bc12_start_detection(struct rt9471_chip *chip)
 	return 0;
 }
 
-static bool bc12_detection_done(struct rt9471_chip *chip)
+bool bc12_detection_done(struct rt9471_chip *chip)
 {
 	int ret = 0;
 	int val = 0;
@@ -2797,7 +2797,7 @@ static bool bc12_detection_done(struct rt9471_chip *chip)
 	return val;
 }
 
-static int bc12_read_charger_type(struct rt9471_chip *chip)
+int bc12_read_charger_type(struct rt9471_chip *chip)
 {
 	int ret = 0;
 	int val = 0;
